@@ -23,10 +23,11 @@ spec:
         project: expense
     spec:
       containers:
-       - name: nginx
-         image: mysql:8.0
-         env:
-          - name: MYSQL_ROOT_PASSWORD
-            value: "ExpenseApp@1"
-         ports:
-          - containerPort: 3306
+         - name: nginx
+           image: mysql:8.0
+
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "ExpenseApp@1"
+      ports:
+        - containerPort: 3306
