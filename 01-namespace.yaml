@@ -1,0 +1,9 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: expense
+  labels:
+    name: expense
+    environment: dev 
+
+#  A Namespace is for logical separation of cluster resources, it does not run containers    
