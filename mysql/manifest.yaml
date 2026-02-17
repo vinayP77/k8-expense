@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
        - name: nginx
-         image: vinayp77/deployments:1.0.0
+         image: mysql:8.0
          env:
           - name: MYSQL_ROOT_PASSWORD
             value: "ExpenseApp@1"
