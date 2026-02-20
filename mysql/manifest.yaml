@@ -23,9 +23,5 @@ spec:
     spec:
       containers:
         - name: mysql
-          image: vinayp77/deployments:1.0.0
-          env:
-            - name: MYSQL_ROOT_PASSWORD
-              value: "ExpenseApp@1"
-          ports:
-            - containerPort: 3306
+          image: vinayp77/mysql:1.0.0
+          
