@@ -22,6 +22,6 @@ spec:
         project: expense
     spec:
       containers:
-        - name: mysql
+        - name: nginx
           image: vinayp77/mysql:1.0.0
           
