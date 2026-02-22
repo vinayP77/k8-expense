@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: nginx               # container name changed to nginx
-          image: vinayp77/backend:1.0
+          image: vinayp77/backend:1.0.0
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
