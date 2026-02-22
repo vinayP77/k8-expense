@@ -7,13 +7,13 @@ metadata:
     app: backend
     tier: backend
     project: expense
-spec:
+spec:  
   replicas: 1
   selector:
     matchLabels:
-      app: backend
-      tier: backend
-      project: expense
+       app: backend
+       tier: backend
+       project: expense
   template:
     metadata:
       labels:
@@ -22,28 +22,9 @@ spec:
         project: expense
     spec:
       containers:
-        - name: backend
-          image: vinayp77/backend:1.0.0
+        - name: nginx
+          image: vinayp77/backend:1.0
           imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          env:
-            - name: DB_USER
-              value: expense
-            - name: DB_PASSWORD
-              value: your_password
-            - name: DB_HOST
-              value: mysql
-          readinessProbe:
-            tcpSocket:
-              port: 8080
-            initialDelaySeconds: 5
-            periodSeconds: 10
-          livenessProbe:
-            tcpSocket:
-              port: 8080
-            initialDelaySeconds: 10
-            periodSeconds: 20
 ---
 apiVersion: v1
 kind: Service
@@ -51,11 +32,12 @@ metadata:
   name: backend
   namespace: expense
 spec:
-  selector:
-    app: backend
-    tier: backend
-    project: expense
+  selector:  # labels are used as selectors
+        app: backend
+        tier: backend
+        project: expense
   ports:
     - protocol: TCP
-      port: 8080
-      targetPort: 8080
+      port: 8080      # service port
+      targetPort: 8080  # container port          
+          
