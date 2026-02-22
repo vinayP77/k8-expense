@@ -25,4 +25,18 @@ spec:
         - name: nginx
           image: vinayp77/mysql:1.0
           imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+spec:
+  selector:  # labels are used as selectors
+        app: mysql
+        tier: mysql
+        project: expense
+  ports:
+    - protocol: TCP
+      port: 3306      # service port
+      targetPort: 3306  # container port          
           
