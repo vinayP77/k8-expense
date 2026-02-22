@@ -4,36 +4,36 @@ metadata:
   name: backend
   namespace: expense
   labels:
-    app: backend
-    tier: backend
+    app: frontend
+    tier: frontend
     project: expense
 spec:  
   replicas: 1
   selector:
     matchLabels:
-       app: backend
-       tier: backend
+       app: frontend
+       tier: frontend
        project: expense
   template:
     metadata:
       labels:
-        app: backend
-        tier: backend
+        app: frontend
+        tier: frontend
         project: expense
     spec:
       containers:
         - name: nginx
-          image: vinayp77/vinayp77/backend:1.0.0
+          image: vinayp77/frontend:1.0.0
           imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend
+  name: frontend
 spec:
   selector:  # labels are used as selectors
-        app: backend
-        tier: backend
+        app: frontend
+        tier: frontend
         project: expense
   ports:
     - protocol: TCP
