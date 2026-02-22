@@ -22,9 +22,18 @@ spec:
         project: expense
     spec:
       containers:
-        - name: nginx
+        - name: backend
           image: vinayp77/backend:1.0
           imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_USER
+              value: expense
+            - name: DB_PASSWORD
+              value: your_password
+            - name: DB_HOST
+              value: mysql
 ---
 apiVersion: v1
 kind: Service
@@ -39,5 +48,4 @@ spec:
   ports:
     - protocol: TCP
       port: 8080      # service port
-      targetPort: 8080  # container port          
-          
+      targetPort: 8080  # container port
