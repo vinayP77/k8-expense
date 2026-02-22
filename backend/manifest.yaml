@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: vinayp77/vinayp77/backend:1.0.0
+          image: vinayp77/vinayp77/backend:1.0
           imagePullPolicy: Always
 ---
 apiVersion: v1

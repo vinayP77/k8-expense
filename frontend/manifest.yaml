@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: vinayp77/frontend:1.0.0
+          image: vinayp77/frontend:1.0
           imagePullPolicy: Always
 ---
 apiVersion: v1
@@ -31,6 +31,7 @@ kind: Service
 metadata:
   name: frontend
 spec:
+  type: LoadBalancer
   selector:  # labels are used as selectors
         app: frontend
         tier: frontend
