@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: joindevops/backend:1.0.0
+          image: vinayp77/backend:1.0
          
 ---
 apiVersion: v1
