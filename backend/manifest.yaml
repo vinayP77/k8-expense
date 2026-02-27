@@ -41,3 +41,4 @@ spec:
       port: 8080      # service port
       targetPort: 8080  # container port          
           
+#final created
