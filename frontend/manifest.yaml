@@ -24,21 +24,22 @@ spec:
       containers:
         - name: nginx
           image: vinayp77/frontend:1.0
+          ports:
+            - containerPort: 80
           imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: frontend
-  namespace: expense
+  namespace: expense   # ⚠️ Add this
 spec:
   type: LoadBalancer
-  selector:  # labels are used as selectors
+  selector:
         app: frontend
         tier: frontend
         project: expense
   ports:
     - protocol: TCP
       port: 80     # service port
-      targetPort: 80  # container port          
-          
+      targetPort: 80  # container port
