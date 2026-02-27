@@ -38,6 +38,6 @@ spec:
         project: expense
   ports:
     - protocol: TCP
-      port: 3306      # service port
-      targetPort: 3306  # container port          
+      port: 80     # service port
+      targetPort: 80  # container port          
           
