@@ -24,36 +24,36 @@ spec:
   resources:
     requests:
       storage: 5Gi
-# ---
-# apiVersion: v1
-# kind: Pod
-# metadata:
-#   name: app
-#   labels:
-#     demo: ebs-static
-# spec:
-#   containers:
-#   - name: nginx
-#     image: nginx
-#     volumeMounts:
-#     - name: nginx-data
-#       mountPath: /usr/share/nginx/html
-#   nodeSelector:
-#     zone: 1b
-#   volumes:
-#   - name: nginx-data
-#     persistentVolumeClaim:
-#       claimName: ebs-static
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: ebs-static
-# spec:
-#   type: LoadBalancer
-#   selector:
-#     demo: ebs-static
-#   ports:
-#   - protocol: TCP
-#     port: 80 #service-port
-#     targetPort: 80 #container-port
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-static
+  labels:
+    demo: ebs-static
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    volumeMounts:
+    - name: nginx-data
+      mountPath: /usr/share/nginx/html
+  nodeSelector:
+    zone: 1b
+  volumes:
+  - name: nginx-data
+    persistentVolumeClaim:
+      claimName: ebs-static
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-lb
+spec:
+  type: LoadBalancer
+  selector:
+    demo: ebs-static
+  ports:
+  - protocol: TCP
+    port: 80 #service-port
+    targetPort: 80 #container-port
