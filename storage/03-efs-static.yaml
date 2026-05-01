@@ -7,20 +7,20 @@ spec:
     storage: 5Gi
   volumeMode: Filesystem
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   storageClassName: ""
   persistentVolumeReclaimPolicy: Retain
   csi:
     driver: efs.csi.aws.com
-    volumeHandle: fs-0fb591314c4dd769b
+    volumeHandle: "fs-0fb591314c4dd769b"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: efs-static
+  name: efs-static-claim
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   storageClassName: ""
   volumeName: efs-static
   resources:
@@ -38,10 +38,10 @@ spec:
     volumeMounts:
     - name: nginx-data
       mountPath: /usr/share/nginx/html
-   volumes:
+  volumes:
   - name: nginx-data
     persistentVolumeClaim:
-      claimName: efs-static
+      claimName: efs-static-claim
 # ---
 # apiVersion: v1
 # kind: Service
