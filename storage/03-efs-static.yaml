@@ -26,26 +26,26 @@ spec:
   resources:
     requests:
       storage: 5Gi
-# ---
-# apiVersion: v1
-# kind: Pod
-# metadata:
-#   name: app
-#   labels:
-#     demo: efs-static
-# spec:
-#   containers:
-#   - name: nginx
-#     image: nginx
-#     volumeMounts:
-#     - name: nginx-data
-#       mountPath: /usr/share/nginx/html
-#   nodeSelector:
-#     zone: 1b
-#   volumes:
-#   - name: nginx-data
-#     persistentVolumeClaim:
-#       claimName: efs-static
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app
+  labels:
+    demo: efs-static
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    volumeMounts:
+    - name: nginx-data
+      mountPath: /usr/share/nginx/html
+  nodeSelector:
+    zone: 1b
+  volumes:
+  - name: nginx-data
+    persistentVolumeClaim:
+      claimName: efs-static
 # ---
 # apiVersion: v1
 # kind: Service
