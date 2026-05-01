@@ -30,9 +30,7 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: efsapp
-  labels:
-    demo: efs-static
+  name: efs-app
 spec:
   containers:
   - name: app
@@ -40,12 +38,10 @@ spec:
     volumeMounts:
     - name: nginx-data
       mountPath: /usr/share/nginx/html
-  nodeSelector:
-    zone: 1b
-  volumes:
+   volumes:
   - name: nginx-data
     persistentVolumeClaim:
-      claimName: efs-static-claim
+      claimName: efs-static
 # ---
 # apiVersion: v1
 # kind: Service
