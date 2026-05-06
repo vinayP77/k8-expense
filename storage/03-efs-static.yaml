@@ -7,7 +7,7 @@ spec:
     storage: 5Gi
   volumeMode: Filesystem
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   storageClassName: ""
   persistentVolumeReclaimPolicy: Retain
   csi:
@@ -20,7 +20,7 @@ metadata:
   name: efs-static-claim
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   storageClassName: ""
   volumeName: efs-static
   resources:
@@ -31,6 +31,8 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: efs-app
+  labels:
+     purpose: efs-static
 spec:
   containers:
   - name: app
@@ -50,7 +52,8 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    demo: efs-static
+    purpose: efs-static
+    
   ports:
   - protocol: TCP
     port: 80 #service-port
