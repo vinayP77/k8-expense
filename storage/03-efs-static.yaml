@@ -12,48 +12,48 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   csi:
     driver: efs.csi.aws.com
-    volumeHandle: "fs-06c0ccbc27f1a807f"
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: efs-static-claim
-spec:
-  accessModes:
-    - ReadWriteMany
-  storageClassName: ""
-  volumeName: efs-static
-  resources:
-    requests:
-      storage: 5Gi
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: efs-app
-  labels:
-    demo: efs-static 
-spec:
-  containers:
-  - name: app
-    image: nginx
-    volumeMounts:
-    - name: nginx-data
-      mountPath: /usr/share/nginx/html
-  volumes:
-  - name: nginx-data
-    persistentVolumeClaim:
-      claimName: efs-static-claim
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: efs-static
-spec:
-  type: LoadBalancer
-  selector:
-    demo: efs-static
-  ports:
-  - protocol: TCP
-    port: 80 #service-port
-    targetPort: 80 #container-port
+    volumeHandle: "fs-0b03fcab7fd43c96b"
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: efs-static-claim
+# spec:
+#   accessModes:
+#     - ReadWriteMany
+#   storageClassName: ""
+#   volumeName: efs-static
+#   resources:
+#     requests:
+#       storage: 5Gi
+# ---
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: efs-app
+#   labels:
+#     demo: efs-static 
+# spec:
+#   containers:
+#   - name: app
+#     image: nginx
+#     volumeMounts:
+#     - name: nginx-data
+#       mountPath: /usr/share/nginx/html
+#   volumes:
+#   - name: nginx-data
+#     persistentVolumeClaim:
+#       claimName: efs-static-claim
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: efs-static
+# spec:
+#   type: LoadBalancer
+#   selector:
+#     demo: efs-static
+#   ports:
+#   - protocol: TCP
+#     port: 80 #service-port
+#     targetPort: 80 #container-port
