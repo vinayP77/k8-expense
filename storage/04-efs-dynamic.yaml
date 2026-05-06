@@ -13,7 +13,7 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: efs-dynamic1
+  name: efs-dynamic1-s1
   labels:
      purpose: efs-dynamic
 spec:
@@ -26,7 +26,7 @@ spec:
   volumes:
   - name: data
     persistentVolumeClaim:
-      claimName: efs-dynamic1
+      claimName: efs-dynamic1-s1
 ---
 apiVersion: v1
 kind: Service
