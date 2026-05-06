@@ -8,14 +8,14 @@ spec:
   storageClassName: efs-dynamic-s1
   resources:
     requests:
-     storage: 5Gi  
+      storage: 5Gi
 ---
 apiVersion: v1
 kind: Pod
 metadata:
   name: efs-dynamic1-s1
   labels:
-     purpose: efs-dynamic
+    purpose: efs-dynamic
 spec:
   containers:
   - name: nginx
@@ -26,7 +26,7 @@ spec:
   volumes:
   - name: data
     persistentVolumeClaim:
-      claimName: efs-dynamic1-s1
+      claimName: efs-dynamic-s1   # ✅ FIXED HERE
 ---
 apiVersion: v1
 kind: Service
@@ -35,8 +35,7 @@ metadata:
 spec:
   selector:
     purpose: efs-dynamic
-    
   ports:
   - protocol: TCP
-    port: 80 #service-port
-    targetPort: 80 #container-port    
+    port: 80
+    targetPort: 80
