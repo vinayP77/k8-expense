@@ -26,12 +26,13 @@ spec:
   volumes:
   - name: data
     persistentVolumeClaim:
-      claimName: efs-dynamic-s1   # ✅ FIXED HERE
+      claimName: efs-dynamic-s1
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: nginx-lb
+  type: LoadBalancer
 spec:
   selector:
     purpose: efs-dynamic
@@ -39,3 +40,4 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 80
+  
